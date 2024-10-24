@@ -21,8 +21,6 @@ public class DbTestDAO {
 		String user = "root";
 		String password = "1234";
 		
-		
-		
 		 try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
@@ -122,11 +120,46 @@ public class DbTestDAO {
 		return res;
 	}
 	
+	//자료 삭제
+	public int setDbTestDeleteOk(int idx) {
+		int res = 0;
+		
+		try {
+			sql = "delete from hoewon where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			res = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("삭제 실패 "+e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
 	
 	
 	//자료 수정
+	public int setDbTestUpdateOk(DbTestVO vo) {
+		int res = 0;
+		
+		try {
+			sql = "update hoewon set name=?, age=?, gender=?, address=? where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			res = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("자료 삭제 실패 "+e.getMessage());
+		}finally {
+			pstmtClose();
+		}
+		
+		return res;
+	}
 	
-	//자료 삭제
+	
+	
 	//자료 한개 검색
 	
 }

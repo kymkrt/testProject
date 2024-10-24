@@ -20,6 +20,8 @@ public class DbInputOk extends HttpServlet{
 		String gender = request.getParameter("gender")==null ? "" : request.getParameter("gender");
 		String address = request.getParameter("address")==null ? "" : request.getParameter("address");
 		
+		String viewPage ="";
+		
 		DbTestVO vo = new DbTestVO();
 		vo.setName(name);
 		vo.setAge(age);
@@ -30,7 +32,17 @@ public class DbInputOk extends HttpServlet{
 		
 		int res = dao.setDbTestInput(vo);
 		
-		String viewPage = "/study2/database/DbList";
+		if(res == 1) {
+			request.setAttribute("msg", "회원가입 성공");
+			request.setAttribute("url", "");
+		}
+		else if(res == 0) {
+			request.setAttribute("msg", "회원가입 성공");
+			request.setAttribute("url", "");
+		}
+		
+		
+		viewPage = "/study2/database/DbList";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 		
