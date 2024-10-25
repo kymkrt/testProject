@@ -27,7 +27,7 @@
 <div class="container">
   <h2>회원 정보 수정</h2>
   <form name="form-control" method="post" action="${ctp}/study2/database/DbInputOk">
-  	<div>성명<input type="text" name="name" class="form-control" autofocus required /></div>
+  	<div>성명<input type="text" name="name" value="${vo.name}" class="form-control" autofocus required /></div>
   	<div>나이<input type="number" name="age" class="form-control" required /></div>
   	<div>성별
 	  	<div><input type="radio" name="gender" value="남자" checked />남자</div>

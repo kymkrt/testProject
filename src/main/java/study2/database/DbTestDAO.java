@@ -158,8 +158,33 @@ public class DbTestDAO {
 		return res;
 	}
 	
-	
-	
 	//자료 한개 검색
+	public DbTestVO getDbTestSearch(int idx) {
+		
+		try {
+			sql = "select * from hoewon where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			
+			vo = new DbTestVO();
+			if(rs.next()) {
+				vo.setIdx(rs.getInt("idx"));
+				vo.setName(rs.getString("name"));
+				vo.setAge(rs.getInt("age"));
+				vo.setGender(rs.getString("gender"));
+				vo.setAddress(rs.getString("address"));
+			}
+		} catch (Exception e) {
+			System.out.println("자료 1건 검색 실패 "+e.getMessage());
+		}finally {
+			rsClose();
+		}
+		
+		return vo;
+	}
+	
+	
+	
 	
 }
